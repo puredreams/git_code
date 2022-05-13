@@ -32,7 +32,7 @@ public:
 			q.pop();
 			res.push_back(cur->val);
 			if(cur->left) q.push(cur->left);
-			if(cur->left) q.push(cur->right);
+			if(cur->right) q.push(cur->right);
 		}
 		return res;
     }
