@@ -1,0 +1,24 @@
+class Solution{
+public:
+    vector<vector<int>> ret;
+    vector<int> path;
+    void dfs(TreeNode* root, int number){
+        //处理空树
+        if (root == NULL) return;
+        //路径更新
+        path.emplace_back(root->val);
+        number -= root->val;
+        //如果递归当前节点为叶子节点且该条路径的值已经expectNumber，则更新ret
+        if(root->left == NULL && root ->right == NULL && number ==0){
+            ret.emplace_back(path);
+        }
+        //左右子树递归
+        dfs(root->left, number);
+        dfs(root->right,number);
+        path.pop_back();
+    }
+    vector<vector<int>> FindPath(TreeNode* root, int expectNumber){
+        dfs(root,expectNumber);
+        return ret;
+    }
+};
